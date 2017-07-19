@@ -11,7 +11,7 @@ import (
 
 	"github.com/coreos/go-oidc/jose"
 	"github.com/coreos/go-oidc/oauth2"
-	"github.com/stratio/paas-oauth/common"
+	"github.com/Stratio/paas-oauth/common"
 	"golang.org/x/net/context"
 )
 
@@ -168,7 +168,12 @@ func handleLogin(ctx context.Context, w http.ResponseWriter, r *http.Request) *c
 
 	http.SetCookie(w, infoCookie)
 
-	http.Redirect(w, r, "https://"+r.Host, http.StatusFound)
+	cfg := make(map[string]interface{})
+	err = common.OpenDcosConfig(&cfg)
+	if err != nil {
+		return err
+	}
+	http.Redirect(w, r, "https://"+r.Host+"/"+cfg["rootUrl"], http.StatusFound)
 
 	return nil
 }

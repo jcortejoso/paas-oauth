@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/stratio/paas-oauth/common"
+	"github.com/Stratio/paas-oauth/common"
 )
 
 var routes = map[string]map[string]common.Handler{

@@ -3,7 +3,9 @@ package common
 import (
 	"net/http"
 	"regexp"
-
+	"os"
+	"encoding/json"
+	log "github.com/Sirupsen/logrus"
 )
 
 type HttpError struct {
@@ -26,4 +28,23 @@ var (
 
 func ValidateEmail(email string) bool {
 	return emailRe.MatchString(email)
+}
+
+const (
+	uiconfigJson = "/opt/mesosphere/etc/ui-config.json"
+)
+
+func OpenDcosConfig(cfg *map[string]interface{}) *HttpError {
+	f, err := os.Open(uiconfigJson)
+	if err != nil {
+		return NewHttpError("ui-config.json read failed", http.StatusInternalServerError)
+	}
+	defer f.Close()
+
+	err = json.NewDecoder(f).Decode(cfg)
+	if err != nil {
+		log.Printf("Decode: %v", err)
+		return NewHttpError("JSON decode error", http.StatusInternalServerError)
+	}
+	return nil
 }

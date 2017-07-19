@@ -10,7 +10,7 @@ import (
 	log "github.com/Sirupsen/logrus"
 	"golang.org/x/net/context"
 
-	"github.com/stratio/paas-oauth/common"
+	"github.com/Stratio/paas-oauth/common"
 )
 
 const (

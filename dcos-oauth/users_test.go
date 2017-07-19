@@ -8,7 +8,7 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/stratio/paas-oauth/common"
+	"github.com/Stratio/paas-oauth/common"
 	"github.com/samuel/go-zookeeper/zk"
 	"github.com/stretchr/testify/assert"
 )

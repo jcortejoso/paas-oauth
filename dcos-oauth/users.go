@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"golang.org/x/net/context"
 
-	"github.com/stratio/paas-oauth/common"
+	"github.com/Stratio/paas-oauth/common"
 )
 
 type User struct {
